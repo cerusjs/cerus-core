@@ -1,0 +1,17 @@
+{
+	"name": "cerus-core",
+	"version": "0.0.1",
+	"description": "The core module for CerusJS",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/cerusjs/cerus-core.git"
+	},
+	"author": "JortvD",
+	"bugs": {
+		"url": "https://github.com/cerusjs/cerus-core/issues"
+	},
+	"scripts": {},
+	"homepage": "https://github.com/cerusjs/cerus-core",
+	"dependencies": {} 
+}
