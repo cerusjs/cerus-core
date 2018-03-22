@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.2 (22 Mar. 2018)
+- (New) Added a lot of documentation.
+- (Enh) The .clear() function now also removes the added functions.
+- (Enh) Updated some development dependencies.
+- (Enh) The use of multiple instances of cerus is now supported.
+- (Fix) Fixed a lot of parameter checks.
+
 ## v0.1.1 (3 Feb. 2018)
 - (Enh) Even though init_ is deprecated usage is still allowed for now.
 
