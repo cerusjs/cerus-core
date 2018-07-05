@@ -50,28 +50,18 @@ describe("cerus", function() {
 				it("should throw an Error", function() {
 					var func = function() {
 						var plugins_ = plugins();
-						plugins_.add({name: "used", version: "correct"});
-						plugins_.add({name: "used", version: "correct"});
+						plugins_.add({name: "used"});
+						plugins_.add({name: "used"});
 					}
 
 					expect(func).to.throw();
 				});
 			});
 
-			context("with an undefined version", function() {
-				it("should throw a TypeError", function() {
-					var func = function() {
-						plugins().add({name: "correct", version: ["incorrect"]});
-					}
-
-					expect(func).to.throw();
-				});
-			});
-
-			context("with a correct name and version", function() {
+			context("with a correct name", function() {
 				it("shouldn't throw any errors", function() {
 					var func = function() {
-						plugins().add({name: "correct", version: "correct"});
+						plugins().add({name: "correct"});
 					}
 
 					expect(func).to.not.throw();
@@ -81,7 +71,7 @@ describe("cerus", function() {
 			context("with undefined dependencies", function() {
 				it("shouldn't throw any errors", function() {
 					var func = function() {
-						plugins().add({name: "correct", version: "correct", dependencies: undefined});
+						plugins().add({name: "correct", dependencies: undefined});
 					}
 
 					expect(func).to.not.throw();
@@ -91,7 +81,7 @@ describe("cerus", function() {
 			context("with a non-existant dependency", function() {
 				it("should throw a TypeError", function() {
 					var func = function() {
-						plugins().add({name: "correct", version: "correct", dependencies: ["non-existant"]});
+						plugins().add({name: "correct", dependencies: ["non-existant"]});
 					}
 
 					expect(func).to.throw();
@@ -102,8 +92,8 @@ describe("cerus", function() {
 				it("shouldn't throw any errors", function() {
 					var func = function() {
 						var plugins_ = plugins();
-						plugins_.add({name: "existant", version: "correct"});
-						plugins_.add({name: "correct", version: "correct", dependencies: ["existant"]});
+						plugins_.add({name: "existant"});
+						plugins_.add({name: "correct", dependencies: ["existant"]});
 					}
 
 					expect(func).to.not.throw();
@@ -115,8 +105,7 @@ describe("cerus", function() {
 					var func = function() {
 						plugins().add(
 						{
-							name: "correct", 
-							version: "correct", 
+							name: "correct",
 							extra: "non-function"
 						});
 					}
@@ -130,8 +119,7 @@ describe("cerus", function() {
 					var func = function() {
 						plugins().add(
 						{
-							name: "correct", 
-							version: "correct", 
+							name: "correct",
 							extra: function() {
 								return "should be added";
 							}
@@ -147,8 +135,7 @@ describe("cerus", function() {
 					var func = function() {
 						plugins().add(
 						{
-							name: "correct", 
-							version: "correct", 
+							name: "correct",
 							_init: function() {
 								return "initializing";
 							}
@@ -195,7 +182,7 @@ describe("cerus", function() {
 				it("shouldn't throw any errors", function() {
 					var func = function() {
 						var plugins_ = plugins();
-						plugins_.add({name: "existant", version: "correct"});
+						plugins_.add({name: "existant"});
 						plugins_.remove("existant");
 					}
 
@@ -207,8 +194,8 @@ describe("cerus", function() {
 				it("should throw an Error", function() {
 					var func = function() {
 						var plugins_ = plugins();
-						plugins_.add({name: "core", version: "correct"});
-						plugins_.add({name: "plugin", version: "correct", dependencies: ["core"]});
+						plugins_.add({name: "core"});
+						plugins_.add({name: "plugin", dependencies: ["core"]});
 						plugins_.remove("core");
 					}
 
@@ -222,8 +209,7 @@ describe("cerus", function() {
 						var plugins_ = plugins();
 						plugins_.add(
 						{
-							name: "existant", 
-							version: "correct", 
+							name: "existant",
 							extra: function() {
 								return "this is added and then removed";
 							}
@@ -266,7 +252,7 @@ describe("cerus", function() {
 			context("with an existant plugin", function() {
 				it("should return true", function() {
 					var plugins_ = plugins();
-					plugins_.add({name: "existant", version: "correct"});
+					plugins_.add({name: "existant"});
 
 					expect(plugins_.has("existant")).to.deep.equal(true);
 				});
@@ -284,7 +270,7 @@ describe("cerus", function() {
 			context("with a single plugin", function() {
 				it("should return an array with the name", function() {
 					var plugins_ = plugins();
-					plugins_.add({name: "plugin1", version: "correct"});
+					plugins_.add({name: "plugin1"});
 					expect(plugins_.list()).to.deep.equal(["plugin1"]);
 				});
 			});
@@ -292,8 +278,8 @@ describe("cerus", function() {
 			context("with multiple plugins", function() {
 				it("should return an array of names", function() {
 					var plugins_ = plugins();
-					plugins_.add({name: "plugin1", version: "correct"});
-					plugins_.add({name: "plugin2", version: "correct"});
+					plugins_.add({name: "plugin1"});
+					plugins_.add({name: "plugin2"});
 					expect(plugins_.list()).to.deep.equal(["plugin1", "plugin2"]);
 				});
 			});
@@ -303,7 +289,7 @@ describe("cerus", function() {
 	describe("#use", function() {
 		it("should work the same as .plugins().add()", function() {
 			var plugins_ = plugins();
-			cerus.use({name: "plugin", version: "correct"});
+			cerus.use({name: "plugin"});
 			expect(plugins_.list().length).to.equal(1);
 		});	
 	});
